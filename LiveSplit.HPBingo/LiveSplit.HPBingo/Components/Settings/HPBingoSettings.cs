@@ -19,8 +19,8 @@ namespace LiveSplit.HPBingo.Components.Settings
             InitializeComponent();
         }
 
-        public int ComponentWidth { get; set; } = BingoConstants.MIN_WIDTH;
-        public int ComponentHeight { get; set; } = BingoConstants.MIN_HEIGHT;
+        public int ComponentWidth { get; set; } = BingoConstants.DEFAULT_WIDTH;
+        public int ComponentHeight { get; set; } = BingoConstants.DEFAULT_HEIGHT;
         public LayoutMode LayoutMode { get; set; } = LayoutMode.Vertical;
 
         public int GetSettingsHashCode()
