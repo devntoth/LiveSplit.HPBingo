@@ -10,6 +10,7 @@
     <RootNamespace>LiveSplit.HPBingo</RootNamespace>
     <AssemblyName>LiveSplit.HPBingo</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>10.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -58,14 +59,23 @@
     </Compile>
     <Compile Include="Factories\HPBingoFactory.cs" />
     <Compile Include="Components\HPBingoComponent.cs" />
-    <Compile Include="Forms\HPBingoHostForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Forms\HPBingoHostControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\HPBingoHostForm.Designer.cs">
-      <DependentUpon>HPBingoHostForm.cs</DependentUpon>
+    <Compile Include="Forms\HPBingoHostControl.Designer.cs">
+      <DependentUpon>HPBingoHostControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\BingoGoal.cs" />
+    <Compile Include="Utils\ValueSource.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Settings\HPBingoSettings.resx">
+      <DependentUpon>HPBingoSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HPBingoHostControl.resx">
+      <DependentUpon>HPBingoHostControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

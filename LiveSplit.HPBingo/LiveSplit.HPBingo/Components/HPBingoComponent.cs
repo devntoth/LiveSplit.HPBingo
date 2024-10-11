@@ -9,6 +9,7 @@ using System.Xml;
 using LiveSplit.HPBingo.Components.Settings;
 using LiveSplit.HPBingo.Forms;
 using LiveSplit.Model;
+using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
 
@@ -16,24 +17,33 @@ namespace LiveSplit.HPBingo.Components
 {
     public class HPBingoComponent : ControlComponent
     {
+        private readonly LiveSplitState _state;
         private readonly HPBingoSettings _settings;
-        private readonly HPBingoHostForm _hostForm;
+        private readonly HPBingoHostControl _hostControl;
 
         public HPBingoComponent(LiveSplitState state)
-            : this(state, new HPBingoHostForm())
+            : this(state, new HPBingoHostControl())
         {
         }
 
-        private HPBingoComponent(LiveSplitState state, HPBingoHostForm control)
+        private HPBingoComponent(LiveSplitState state, HPBingoHostControl control)
             : base(state, control, ex => HandleException(state.Form, ex))
         {
-            _hostForm = control;
+            _state = state;
+            _hostControl = control;
             _settings = new HPBingoSettings();
+
+            state.OnReset += OnResetState;
         }
 
         private static void HandleException(Form form, Exception ex)
         {
             MessageBox.Show(form, $"Unexpected error occurred:{Environment.NewLine}{ex.Message}{Environment.NewLine}Here: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void OnResetState(object sender, TimerPhase value)
+        {
+            InvokeIfNeeded(_hostControl.ResetCounters);
         }
 
         public override string ComponentName => BingoConstants.COMPONENT_NAME;
@@ -75,6 +85,33 @@ namespace LiveSplit.HPBingo.Components
         public override void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
             base.DrawVertical(g, state, width, clipRegion);
+        }
+
+        public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
+        {
+            if (_hostControl.IsDisposed)
+                return;
+
+            UpdateStyle(state.LayoutSettings);
+            base.Update(invalidator, state, width, height, mode);
+        }
+
+        public override void Dispose()
+        {
+            _state.OnReset -= OnResetState;
+
+            base.Dispose();
+        }
+
+        private void UpdateStyle(Options.LayoutSettings layout)
+        {
+            InvokeIfNeeded(() =>
+            {
+                _hostControl.LabelColor = layout.TextColor;
+                _hostControl.LabelFont = layout.TextFont;
+                _hostControl.CounterColor = layout.AheadGainingTimeColor;
+                _hostControl.CounterFont = layout.TimerFont;
+            });
         }
     }
 }
