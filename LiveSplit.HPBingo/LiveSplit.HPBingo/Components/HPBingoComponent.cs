@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
@@ -33,7 +34,8 @@ namespace LiveSplit.HPBingo.Components
             _hostControl = control;
             _settings = new HPBingoSettings();
 
-            state.OnReset += OnResetState;
+            _settings.PropertyChanged += OnSettingsChanged;
+            _state.OnReset += OnResetState;
         }
 
         private static void HandleException(Form form, Exception ex)
@@ -44,6 +46,61 @@ namespace LiveSplit.HPBingo.Components
         private void OnResetState(object sender, TimerPhase value)
         {
             InvokeIfNeeded(_hostControl.ResetCounters);
+        }
+
+        private void OnSettingsChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(e.PropertyName))
+                return;
+
+            InvokeIfNeeded(() =>
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(HPBingoSettings.FontSize):
+                    case nameof(HPBingoSettings.UseLayoutFontSize):
+                        UpdateCounterFont();
+                        UpdateLabelFont();
+                        return;
+                    case nameof(HPBingoSettings.UseTextFontForCounters):
+                        UpdateCounterFont();
+                        return;
+                    case nameof(HPBingoSettings.UseLayoutTextColor):
+                    case nameof(HPBingoSettings.UseTextColorForCounters):
+                    case nameof(HPBingoSettings.TextColor):
+                    case nameof(HPBingoSettings.CounterColor):
+                        UpdateColors();
+                        return;
+                    default:
+                        return;
+                }
+            });
+        }
+
+        private void UpdateCounterFont()
+        {
+            Font textFont = _state.LayoutSettings.TextFont;
+            Font timerFont = _state.LayoutSettings.TimerFont;
+            _hostControl.CounterFont = new Font(
+                _settings.UseTextFontForCounters ? textFont.FontFamily : timerFont.FontFamily,
+                _settings.UseLayoutFontSize ? textFont.Size : _settings.FontSize,
+                timerFont.Style);
+        }
+
+        private void UpdateLabelFont()
+        {
+            Font textFont = _state.LayoutSettings.TextFont;
+            _hostControl.LabelFont = new Font(
+                textFont.FontFamily,
+                _settings.UseLayoutFontSize ? textFont.Size : _settings.FontSize,
+                textFont.Style);
+        }
+
+        private void UpdateColors()
+        {
+            Color textColor = _settings.UseLayoutTextColor ? _state.LayoutSettings.TextColor : _settings.TextColor;
+            _hostControl.LabelColor = textColor;
+            _hostControl.CounterColor = _settings.UseTextColorForCounters ? textColor : _settings.CounterColor;
         }
 
         public override string ComponentName => BingoConstants.COMPONENT_NAME;
@@ -92,13 +149,14 @@ namespace LiveSplit.HPBingo.Components
             if (_hostControl.IsDisposed)
                 return;
 
-            UpdateStyle(state.LayoutSettings);
+            //UpdateStyle(state.LayoutSettings);
             base.Update(invalidator, state, width, height, mode);
         }
 
         public override void Dispose()
         {
             _state.OnReset -= OnResetState;
+            _settings.PropertyChanged -= OnSettingsChanged;
 
             base.Dispose();
         }

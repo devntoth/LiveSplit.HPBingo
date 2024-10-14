@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using LiveSplit.HPBingo.Types;
-using LiveSplit.HPBingo.Utils;
-using LiveSplit.Model;
 
 namespace LiveSplit.HPBingo.Forms
 {
     public partial class HPBingoHostControl : UserControl
     {
-        private readonly Dictionary<BingoGoal, ValueSource> _scores;
+        private readonly Dictionary<BingoGoal, HPBingoScoreTracker> _scores;
 
         private int _currentGoals = 0;
         private int _requiredGoals = 0;
@@ -19,79 +16,21 @@ namespace LiveSplit.HPBingo.Forms
         public HPBingoHostControl()
         {
             InitializeComponent();
-            SetupStyleBindings();
 
-            string labelTextName = nameof(Label.Text);
-            _scores = new Dictionary<BingoGoal, ValueSource>
-            {
-                { BingoGoal.BG_Star, new ValueSource(starValue, labelTextName) },
-                { BingoGoal.BG_Armorstand, new ValueSource(armorstandValue, labelTextName) },
-                { BingoGoal.BG_Cauldron, new ValueSource(cauldronValue, labelTextName) },
-                { BingoGoal.BG_Pot, new ValueSource(potValue, labelTextName) },
-                { BingoGoal.BG_Imp, new ValueSource(impValue, labelTextName) },
-                { BingoGoal.BG_Spider, new ValueSource(spiderValue, labelTextName) },
-                { BingoGoal.BG_Pixie, new ValueSource(pixieValue, labelTextName) },
-                { BingoGoal.BG_Frog, new ValueSource(frogValue, labelTextName) },
-                { BingoGoal.BG_Bark, new ValueSource(barkValue, labelTextName) },
-                { BingoGoal.BG_Mucus, new ValueSource(mucusValue, labelTextName) }
-            };
-        }
-
-        private void SetupStyleBindings()
-        {
-            string foreColorName = nameof(Label.ForeColor);
-            string fontName = nameof(Label.Font);
-
-            label1.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label1.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label2.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label2.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label3.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label3.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label4.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label4.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label5.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label5.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label6.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label6.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label7.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label7.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label8.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label8.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label9.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label9.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label10.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label10.DataBindings.Add(fontName, this, nameof(LabelFont));
-            label11.DataBindings.Add(foreColorName, this, nameof(LabelColor));
-            label11.DataBindings.Add(fontName, this, nameof(LabelFont));
-
-            starValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            starValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            armorstandValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            armorstandValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            cauldronValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            cauldronValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            potValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            potValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            impValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            impValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            spiderValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            spiderValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            pixieValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            pixieValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            frogValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            frogValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            barkValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            barkValue.DataBindings.Add(fontName, this, nameof(CounterFont));
-            mucusValue.DataBindings.Add(foreColorName, this, nameof(CounterColor));
-            mucusValue.DataBindings.Add(fontName, this, nameof(CounterFont));
+            _scores = counterTable.Controls.OfType<HPBingoScoreTracker>().ToDictionary(x => x.GoalType);
         }
 
         private Color _labelColor = Color.MediumOrchid;
         public Color LabelColor
         {
             get => _labelColor;
-            set => SetValue(ref _labelColor, value);
+            set
+            {
+                if (_labelColor.Equals(value))
+                    return;
+
+                _labelColor = value;
+            }
         }
 
         private Color _counterColor = Color.AliceBlue;
