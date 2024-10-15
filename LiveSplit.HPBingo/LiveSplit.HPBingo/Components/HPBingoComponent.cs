@@ -36,11 +36,20 @@ namespace LiveSplit.HPBingo.Components
 
             _settings.PropertyChanged += OnSettingsChanged;
             _state.OnReset += OnResetState;
+
+            UpdateStyle();
         }
 
         private static void HandleException(Form form, Exception ex)
         {
-            MessageBox.Show(form, $"Unexpected error occurred:{Environment.NewLine}{ex.Message}{Environment.NewLine}Here: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(form, $"Unexpected error occurred:{Environment.NewLine}{ex.Message}{Environment.NewLine}>Here: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void UpdateStyle()
+        {
+            UpdateLabelFont();
+            UpdateCounterFont();
+            UpdateColors();
         }
 
         private void OnResetState(object sender, TimerPhase value)

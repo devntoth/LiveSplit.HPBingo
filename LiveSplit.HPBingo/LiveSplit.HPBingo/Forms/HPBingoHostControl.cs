@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using LiveSplit.HPBingo.Types;
+using LiveSplit.UI.Components;
 
 namespace LiveSplit.HPBingo.Forms
 {
@@ -10,81 +12,39 @@ namespace LiveSplit.HPBingo.Forms
     {
         private readonly Dictionary<BingoGoal, HPBingoScoreTracker> _scores;
 
-        private int _currentGoals = 0;
-        private int _requiredGoals = 0;
-
         public HPBingoHostControl()
         {
             InitializeComponent();
-
+            
             _scores = counterTable.Controls.OfType<HPBingoScoreTracker>().ToDictionary(x => x.GoalType);
         }
 
-        private Color _labelColor = Color.MediumOrchid;
+        private Color _labelColor;
         public Color LabelColor
         {
             get => _labelColor;
-            set
-            {
-                if (_labelColor.Equals(value))
-                    return;
-
-                _labelColor = value;
-            }
+            set => SetValue(ref _labelColor, value, (st, val) => st.LabelColor = val);
         }
 
-        private Color _counterColor = Color.AliceBlue;
+        private Color _counterColor;
         public Color CounterColor
         {
             get => _counterColor;
-            set 
-            { 
-                if (SetValue(ref _counterColor, value))
-                    bingoValue.ForeColor = value;
-            }
+            set => SetValue(ref _counterColor, value, (st, val) => st.CounterColor = val);
         }
 
         private Font _labelFont;
         public Font LabelFont
         {
             get => _labelFont;
-            set => SetValue(ref _labelFont, value);
+            set => SetValue(ref _labelFont, value, (st, val) => st.LabelFont = val);
         }
 
         private Font _counterFont;
         public Font CounterFont
         {
             get => _counterFont;
-            set 
-            { 
-                if (SetValue(ref _counterFont, value))
-                    bingoValue.Font = value;
-            }
-        }
-
-        public int CurrentGoals 
-        { 
-            get => _currentGoals;
-            set
-            {
-                if (_currentGoals == value) 
-                    return;
-
-                _currentGoals = value;
-                UpdateBingoLabel();
-            }
-        }
-        public int RequiredGoals
-        {
-            get => _requiredGoals;
-            set
-            {
-                if (_requiredGoals == value) 
-                    return;
-
-                _requiredGoals = value;
-                UpdateBingoLabel();
-            }
+            set => SetValue(ref _counterFont, value, (st, val) => st.CounterFont = val);
         }
 
         public int this[BingoGoal goal]
@@ -99,22 +59,21 @@ namespace LiveSplit.HPBingo.Forms
             {
                 score.Value = 0;
             }
-
-            CurrentGoals = 0;
         }
 
-        private bool SetValue<T>(ref T oldVal, T newVal)
+        private void SetValue<T>(ref T oldVal, T newVal, Action<HPBingoScoreTracker, T> setterAction)
         {
+            if (setterAction is null)
+                throw new ArgumentNullException(nameof(setterAction));
+
             if (EqualityComparer<T>.Default.Equals(newVal, oldVal))
-                return false;
+                return;
 
             oldVal = newVal;
-            return true;
-        }
-
-        private void UpdateBingoLabel()
-        {
-            bingoValue.Text = $"{CurrentGoals} / {RequiredGoals}";
+            foreach (var st in _scores.Values)
+            {
+                setterAction(st, newVal);
+            }
         }
     }
 }

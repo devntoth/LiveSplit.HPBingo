@@ -37,8 +37,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.scoreLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.scoreValue, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -46,7 +46,6 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 20);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -58,7 +57,7 @@
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Location = new System.Drawing.Point(3, 0);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(194, 20);
+            this.scoreLabel.Size = new System.Drawing.Size(314, 20);
             this.scoreLabel.TabIndex = 0;
             this.scoreLabel.Text = "SCORE";
             this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -69,9 +68,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.scoreValue.AutoSize = true;
-            this.scoreValue.Location = new System.Drawing.Point(203, 0);
+            this.scoreValue.Location = new System.Drawing.Point(323, 0);
             this.scoreValue.Name = "scoreValue";
-            this.scoreValue.Size = new System.Drawing.Size(194, 20);
+            this.scoreValue.Size = new System.Drawing.Size(74, 20);
             this.scoreValue.TabIndex = 1;
             this.scoreValue.Text = "0";
             this.scoreValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

@@ -14,7 +14,7 @@ namespace LiveSplit.HPBingo
 
         public const int DEFAULT_FONTSIZE = 12;
         public const int DEFAULT_WIDTH = 100;
-        public const int DEFAULT_HEIGHT = 200;
+        public const int DEFAULT_HEIGHT = 350;
         public const int MIN_WIDTH = 200;
         public const int MIN_HEIGHT = 20;
 

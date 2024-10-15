@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.counterTable = new System.Windows.Forms.TableLayoutPanel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.bingoValue = new System.Windows.Forms.Label();
             this.hPBingoHostControlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hpBingoScoreTracker1 = new LiveSplit.HPBingo.Forms.HPBingoScoreTracker();
             this.hpBingoScoreTracker2 = new LiveSplit.HPBingo.Forms.HPBingoScoreTracker();
@@ -52,8 +50,6 @@
             this.counterTable.ColumnCount = 2;
             this.counterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.counterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.counterTable.Controls.Add(this.label11, 0, 10);
-            this.counterTable.Controls.Add(this.bingoValue, 1, 10);
             this.counterTable.Controls.Add(this.hpBingoScoreTracker1, 0, 0);
             this.counterTable.Controls.Add(this.hpBingoScoreTracker2, 0, 1);
             this.counterTable.Controls.Add(this.hpBingoScoreTracker3, 0, 2);
@@ -67,43 +63,20 @@
             this.counterTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.counterTable.Location = new System.Drawing.Point(0, 0);
             this.counterTable.Name = "counterTable";
-            this.counterTable.RowCount = 11;
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.counterTable.RowCount = 10;
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
+            this.counterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.counterTable.Size = new System.Drawing.Size(444, 450);
             this.counterTable.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", this.hPBingoHostControlBindingSource, "LabelColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 400);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(216, 50);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Goals";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // bingoValue
-            // 
-            this.bingoValue.AutoSize = true;
-            this.bingoValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bingoValue.Location = new System.Drawing.Point(225, 400);
-            this.bingoValue.Name = "bingoValue";
-            this.bingoValue.Size = new System.Drawing.Size(216, 50);
-            this.bingoValue.TabIndex = 11;
-            this.bingoValue.Text = "0 / 0";
-            this.bingoValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // hPBingoHostControlBindingSource
             // 
@@ -123,7 +96,7 @@
             this.hpBingoScoreTracker1.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.hpBingoScoreTracker1.Location = new System.Drawing.Point(3, 3);
             this.hpBingoScoreTracker1.Name = "hpBingoScoreTracker1";
-            this.hpBingoScoreTracker1.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker1.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker1.TabIndex = 22;
             this.hpBingoScoreTracker1.Value = 0;
             // 
@@ -138,9 +111,9 @@
             this.hpBingoScoreTracker2.Label = "Armorstands";
             this.hpBingoScoreTracker2.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker2.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker2.Location = new System.Drawing.Point(3, 43);
+            this.hpBingoScoreTracker2.Location = new System.Drawing.Point(3, 48);
             this.hpBingoScoreTracker2.Name = "hpBingoScoreTracker2";
-            this.hpBingoScoreTracker2.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker2.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker2.TabIndex = 23;
             this.hpBingoScoreTracker2.Value = 0;
             // 
@@ -155,9 +128,9 @@
             this.hpBingoScoreTracker3.Label = "Cauldrons";
             this.hpBingoScoreTracker3.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker3.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker3.Location = new System.Drawing.Point(3, 83);
+            this.hpBingoScoreTracker3.Location = new System.Drawing.Point(3, 93);
             this.hpBingoScoreTracker3.Name = "hpBingoScoreTracker3";
-            this.hpBingoScoreTracker3.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker3.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker3.TabIndex = 24;
             this.hpBingoScoreTracker3.Value = 0;
             // 
@@ -172,9 +145,9 @@
             this.hpBingoScoreTracker4.Label = "Pots";
             this.hpBingoScoreTracker4.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker4.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker4.Location = new System.Drawing.Point(3, 123);
+            this.hpBingoScoreTracker4.Location = new System.Drawing.Point(3, 138);
             this.hpBingoScoreTracker4.Name = "hpBingoScoreTracker4";
-            this.hpBingoScoreTracker4.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker4.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker4.TabIndex = 25;
             this.hpBingoScoreTracker4.Value = 0;
             // 
@@ -189,9 +162,9 @@
             this.hpBingoScoreTracker5.Label = "Imps";
             this.hpBingoScoreTracker5.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker5.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker5.Location = new System.Drawing.Point(3, 163);
+            this.hpBingoScoreTracker5.Location = new System.Drawing.Point(3, 183);
             this.hpBingoScoreTracker5.Name = "hpBingoScoreTracker5";
-            this.hpBingoScoreTracker5.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker5.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker5.TabIndex = 26;
             this.hpBingoScoreTracker5.Value = 0;
             // 
@@ -206,9 +179,9 @@
             this.hpBingoScoreTracker6.Label = "Spiders";
             this.hpBingoScoreTracker6.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker6.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker6.Location = new System.Drawing.Point(3, 203);
+            this.hpBingoScoreTracker6.Location = new System.Drawing.Point(3, 228);
             this.hpBingoScoreTracker6.Name = "hpBingoScoreTracker6";
-            this.hpBingoScoreTracker6.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker6.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker6.TabIndex = 27;
             this.hpBingoScoreTracker6.Value = 0;
             // 
@@ -223,9 +196,9 @@
             this.hpBingoScoreTracker7.Label = "Pixies";
             this.hpBingoScoreTracker7.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker7.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker7.Location = new System.Drawing.Point(3, 243);
+            this.hpBingoScoreTracker7.Location = new System.Drawing.Point(3, 273);
             this.hpBingoScoreTracker7.Name = "hpBingoScoreTracker7";
-            this.hpBingoScoreTracker7.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker7.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker7.TabIndex = 28;
             this.hpBingoScoreTracker7.Value = 0;
             // 
@@ -240,9 +213,9 @@
             this.hpBingoScoreTracker8.Label = "Frogs";
             this.hpBingoScoreTracker8.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker8.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker8.Location = new System.Drawing.Point(3, 283);
+            this.hpBingoScoreTracker8.Location = new System.Drawing.Point(3, 318);
             this.hpBingoScoreTracker8.Name = "hpBingoScoreTracker8";
-            this.hpBingoScoreTracker8.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker8.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker8.TabIndex = 29;
             this.hpBingoScoreTracker8.Value = 0;
             // 
@@ -257,9 +230,9 @@
             this.hpBingoScoreTracker9.Label = "Wiggentree Barks";
             this.hpBingoScoreTracker9.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker9.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker9.Location = new System.Drawing.Point(3, 323);
+            this.hpBingoScoreTracker9.Location = new System.Drawing.Point(3, 363);
             this.hpBingoScoreTracker9.Name = "hpBingoScoreTracker9";
-            this.hpBingoScoreTracker9.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker9.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker9.TabIndex = 30;
             this.hpBingoScoreTracker9.Value = 0;
             // 
@@ -274,9 +247,9 @@
             this.hpBingoScoreTracker10.Label = "Flobberworm Mucus";
             this.hpBingoScoreTracker10.LabelColor = System.Drawing.SystemColors.ControlText;
             this.hpBingoScoreTracker10.LabelFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hpBingoScoreTracker10.Location = new System.Drawing.Point(3, 363);
+            this.hpBingoScoreTracker10.Location = new System.Drawing.Point(3, 408);
             this.hpBingoScoreTracker10.Name = "hpBingoScoreTracker10";
-            this.hpBingoScoreTracker10.Size = new System.Drawing.Size(438, 34);
+            this.hpBingoScoreTracker10.Size = new System.Drawing.Size(438, 39);
             this.hpBingoScoreTracker10.TabIndex = 31;
             this.hpBingoScoreTracker10.Value = 0;
             // 
@@ -289,7 +262,6 @@
             this.Name = "HPBingoHostControl";
             this.Size = new System.Drawing.Size(444, 450);
             this.counterTable.ResumeLayout(false);
-            this.counterTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hPBingoHostControlBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -298,8 +270,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel counterTable;
-        private System.Windows.Forms.Label bingoValue;
-        private System.Windows.Forms.Label label11;
         private HPBingoScoreTracker hpBingoScoreTracker1;
         private HPBingoScoreTracker hpBingoScoreTracker2;
         private HPBingoScoreTracker hpBingoScoreTracker3;
